@@ -71,10 +71,17 @@
       #messages-container {
         padding: 1rem;
       }
+      #today-date {
+        margin: 0 0 1rem;
+        text-align: center;
+        color: #666;
+        font-size: 0.9rem;
+      }
     </style>
   </head>
   <body>
     <div id="messages-container">
+      <header id="today-date" aria-label="今日の日付"></header>
       <ul id="messages"></ul>
     </div>
     <form id="form" action="">
@@ -95,6 +102,11 @@
       const form = document.getElementById('form');
       const input = document.getElementById('input');
       const messages = document.getElementById('messages');
+      document.getElementById('today-date').textContent = new Intl.DateTimeFormat('ja-JP', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric'
+      }).format(new Date()).replace(/-/g, '/');
 
       function getColorFromId(id) {
         let hash = 0;
